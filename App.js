@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <AppBar></AppBar>
-      <CardComponent></CardComponent>
+      <CardComponent />       
     </NativeBaseProvider>
   );
 }
