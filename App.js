@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import AppBar from "./src/AppBar";
 import CardComponent from "./src/Card";
 import {
   NativeBaseProvider,
@@ -14,8 +13,7 @@ import {
 export default function App() {
   return (
     <NativeBaseProvider>
-      <AppBar></AppBar>
-      <CardComponent />       
+      <CardComponent />
     </NativeBaseProvider>
   );
 }
