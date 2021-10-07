@@ -2,6 +2,7 @@ import React from "react";
 import {
   VStack,
   HStack,
+  Button,
   Avatar,
   Image,
   Text,
@@ -12,6 +13,18 @@ import {
   Stack,
   Heading,
 } from "native-base";
+import { Pressable } from "react-native";
+
+const handleEvent = (eventName) => {
+  return () => {
+    const limit = 10;
+    updateEventLog((state) => {
+      const nextState = state.slice(0, limit - 1);
+      nextState.unshift(eventName);
+      return nextState;
+    });
+  };
+};
 
 function CardComponent() {
   return (
@@ -20,40 +33,16 @@ function CardComponent() {
         BogosGames
       </Heading>
       <HStack space={4}>
-        <Center w="64" h="20" bg="primary.500" rounded="md" shadow={3}>
-          Dobrescu are pula ok.
-        </Center>
-        <Center
-          w="64"
-          h="20"
-          bg="secondary.500"
-          rounded="md"
-          shadow={3}
-        ></Center>
+        <Button>Dobrescu are pula ok.</Button>
+        <Button>Mihai are pula ok.</Button>
       </HStack>
       <HStack space={4}>
-        <Center w="64" h="20" bg="primary.500" rounded="md" shadow={3}>
-          Dragos are pula ok.
-        </Center>
-        <Center
-          w="64"
-          h="20"
-          bg="secondary.500"
-          rounded="md"
-          shadow={3}
-        ></Center>
+        <Button>Dragos are pula ok.</Button>
+        <Button>Relu are pula ok.</Button>
       </HStack>
       <HStack space={4}>
-        <Center w="64" h="20" bg="primary.500" rounded="md" shadow={3}>
-          Relu are pula ok.
-        </Center>
-        <Center
-          w="64"
-          h="20"
-          bg="secondary.500"
-          rounded="md"
-          shadow={3}
-        ></Center>
+        <Button>Stefan nu are pula ok.</Button>
+        <Button>Mihai are pula ok.</Button>
       </HStack>
     </VStack>
   );
