@@ -2,7 +2,7 @@ import { usePropsWithComponentTheme } from "native-base";
 import { VStack, Center, HStack, Button, Heading } from "native-base";
 import React from "react";
 import { chunk } from "lodash";
-function NumberOfPlayers(props) {
+function NumberOfPlayersSelector(props) {
   const NumberOfPlayersOptions: Array<Array<number>> = chunk(
     Array.from(
       { length: props.max - props.min + 1 },
@@ -20,8 +20,22 @@ function NumberOfPlayers(props) {
         </Heading>
         {NumberOfPlayersOptions.map((option: Array<number>, stackIndex) => (
           <HStack space={4} key={stackIndex}>
-            <Button>{option[0]}</Button>
-            <Button visibility={option.length > 1 ? "visible" : "hidden"}>
+            {/* @TODO: this can be improved */}
+            <Button
+              onPressIn={() => {
+                props.setNumberOfPlayers(option[0]);
+                props.setGameOngoing(true);
+              }}
+            >
+              {option[0]}
+            </Button>
+            <Button
+              visibility={option.length > 1 ? "visible" : "hidden"}
+              onPressIn={() => {
+                props.setNumberOfPlayers(option[1]);
+                props.setGameOngoing(true);
+              }}
+            >
               {option[1]}
             </Button>
           </HStack>
@@ -30,4 +44,4 @@ function NumberOfPlayers(props) {
     </div>
   );
 }
-export default NumberOfPlayers;
+export default NumberOfPlayersSelector;
