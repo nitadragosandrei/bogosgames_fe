@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import Games from "./components/Games";
 import Presedintii from "./components/Presedintii";
-import NumberOfPlayers from "./components/NumberOfPlayers";
+import NumberOfPlayersSelector from "./components/NumberOfPlayersSelector";
 export default function Main() {
   return (
     <Router>

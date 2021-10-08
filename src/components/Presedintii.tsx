@@ -19,7 +19,9 @@ function Presedintii() {
           setNumberOfPlayers={setNumberOfPlayers}
         ></NumberOfPlayersSelector>
       ) : (
-        <h1>Dragos</h1>
+        <NameOfPlayersSelector
+          numberOfPlayers={numberOfPlayers}
+        ></NameOfPlayersSelector>
       )}
     </div>
   );
