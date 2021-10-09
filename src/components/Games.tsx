@@ -1,19 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { VStack, Center, HStack, Button, Heading } from "native-base";
-function Games() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+function Games({ navigation }) {
   return (
     <VStack alignItems="center" space={4}>
       <Heading textAlign="center" mb="10">
         BogosGames
       </Heading>
       <HStack space={4}>
-        <NavLink to="/remi" style={{ textDecoration: "none" }}>
           <Button>Remi</Button>
-        </NavLink>
-        <NavLink to="/presedintii" style={{ textDecoration: "none" }}>
-          <Button>Presedintii</Button>
-        </NavLink>
+          <Button onPress={() => navigation.navigate('Presedintii')}>Presedintii</Button>
       </HStack>
       <HStack space={4}>
         <Button>Dragos are pula ok.</Button>

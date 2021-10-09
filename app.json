@@ -25,6 +25,7 @@
         "backgroundColor": "#FFFFFF"
       }
     },
+    "entryPoint": "App.tsx",
     "web": {
       "favicon": "./assets/favicon.png"
     }
