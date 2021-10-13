@@ -1,9 +1,15 @@
 import { Container, usePropsWithComponentTheme } from "native-base";
-import { VStack, Center, HStack, Button, Heading } from "native-base";
+import {
+  VStack,
+  Center,
+  HStack,
+  Button,
+  Heading,
+  Text,
+  Flex,
+} from "native-base";
 import React from "react";
 import { chunk } from "lodash";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 function NumberOfPlayersSelector(props) {
   const NumberOfPlayersOptions: Array<Array<number>> = chunk(
@@ -15,7 +21,7 @@ function NumberOfPlayersSelector(props) {
   );
 
   return (
-    <Container>
+    <Flex alignItems="center">
       <VStack alignItems="center" space={4}>
         <Heading>{props.gameName}</Heading>
         <Heading textAlign="center" mb="10">
@@ -30,7 +36,7 @@ function NumberOfPlayersSelector(props) {
                 props.setGameOngoing(true);
               }}
             >
-              {option[0]}
+              <Text>{option[0]}</Text>
             </Button>
             <Button
               isDisabled={option.length > 1 ? false : true}
@@ -39,12 +45,12 @@ function NumberOfPlayersSelector(props) {
                 props.setGameOngoing(true);
               }}
             >
-              {option[1]}
+              <Text>{option[0] + 1}</Text>
             </Button>
           </HStack>
         ))}
       </VStack>
-    </Container>
+    </Flex>
   );
 }
 export default NumberOfPlayersSelector;

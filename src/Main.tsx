@@ -1,10 +1,11 @@
 import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Games from "./components/Games";
 import Presedintii from "./components/Presedintii";
 import NumberOfPlayersSelector from "./components/NumberOfPlayersSelector";
+import { NativeBaseProvider } from "native-base";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,14 +24,13 @@ export default function Main() {
     //     </Route>
     //   </Switch>
     // </Router>
+    <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Games">
-          <Stack.Screen
-            name="Games"
-            component={Games}
-          />
+          <Stack.Screen name="Games" component={Games} />
           <Stack.Screen name="Presedintii" component={Presedintii} />
         </Stack.Navigator>
       </NavigationContainer>
+    </NativeBaseProvider>
   );
 }

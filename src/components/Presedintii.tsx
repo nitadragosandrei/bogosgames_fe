@@ -1,4 +1,4 @@
-import { Alert, Container } from "native-base";
+import { Alert, Flex } from "native-base";
 import React from "react";
 import { BackHandler } from "react-native";
 import NumberOfPlayersSelector from "./NumberOfPlayersSelector";
@@ -9,7 +9,7 @@ function Presedintii({ navigation }) {
   const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);
 
   return (
-    <Container>
+    <Flex alignItems="center">
       {!gameOngoing ? (
         <NumberOfPlayersSelector
           gameName="Presedintii"
@@ -17,13 +17,11 @@ function Presedintii({ navigation }) {
           max="7"
           setGameOngoing={setGameOngoing}
           setNumberOfPlayers={setNumberOfPlayers}
-        ></NumberOfPlayersSelector>
+        />
       ) : (
-        <NameOfPlayersSelector
-          numberOfPlayers={numberOfPlayers}
-        ></NameOfPlayersSelector>
+        <NameOfPlayersSelector numberOfPlayers={numberOfPlayers} />
       )}
-    </Container>
+    </Flex>
   );
 }
 
