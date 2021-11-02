@@ -20,6 +20,7 @@ function NameOfPlayersSelector(props) {
         {[...Array(props.numberOfPlayers).keys()].map((index) => {
           return (
             <Input
+              key={index}
               nativeID={"player" + index}
               size="xs"
               placeholder={"Insert player " + (index + 1) + " name"}
