@@ -1,21 +1,31 @@
 import { Input, VStack, Button, Heading, FormControl } from "native-base";
 import React from "react";
-function NameOfPlayersSelector(props) {
+
+function NameOfPlayersSelector({ navigation, route }) {
+  const [nameOfPlayers, setNameOfPlayers] = React.useState({});
+
   function handleChange(e) {
     const value = e.target.value;
-    props.setNameOfPlayers({
-      ...props.nameOfPlayers,
+    setNameOfPlayers({
+      ...nameOfPlayers,
       [e.target.id]: value,
     });
   }
 
   return (
-    <VStack alignItems="center" space={4}>
+    <VStack
+      alignItems="center"
+      space={4}
+      w={{
+        base: "100%",
+        md: "100%",
+      }}
+    >
       <Heading textAlign="center" mb="10">
         Insert names
       </Heading>
       <FormControl>
-        {[...Array(props.numberOfPlayers).keys()].map((index) => {
+        {[...Array(route.params.numberOfPlayers).keys()].map((index) => {
           return (
             <Input
               key={index}
@@ -29,9 +39,10 @@ function NameOfPlayersSelector(props) {
       </FormControl>
       <Button
         onPress={() => {
-          console.log(props.nameOfPlayers);
-          props.setGameOngoing(true);
-          // props.setNameOfPlayers();
+          navigation.navigate(route.params.gameName, {
+            nameOfPlayers,
+            numberOfplayers: route.params.numberOfPlayers,
+          });
         }}
       >
         Next

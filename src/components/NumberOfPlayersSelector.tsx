@@ -11,11 +11,11 @@ import {
 import React from "react";
 import { chunk } from "lodash";
 
-function NumberOfPlayersSelector(props) {
+function NumberOfPlayersSelector({ navigation, route }) {
   const NumberOfPlayersOptions: Array<Array<number>> = chunk(
     Array.from(
-      { length: props.max - props.min + 1 },
-      (_, i) => Number(i) + Number(props.min)
+      { length: route.params.max - route.params.min + 1 },
+      (_, i) => Number(i) + Number(route.params.min)
     ),
     2
   );
@@ -23,7 +23,7 @@ function NumberOfPlayersSelector(props) {
   return (
     <Flex alignItems="center">
       <VStack alignItems="center" space={4}>
-        <Heading>{props.gameName}</Heading>
+        <Heading>{route.params.gameName}</Heading>
         <Heading textAlign="center" mb="10">
           Choose the number of players
         </Heading>
@@ -32,8 +32,10 @@ function NumberOfPlayersSelector(props) {
             {/* @TODO: this can be improved */}
             <Button
               onPressIn={() => {
-                props.setNumberOfPlayers(option[0]);
-                props.setNumberOfPlayersSelected(true);
+                navigation.navigate("NameOfPlayersSelector", {
+                  gameName: route.params.gameName,
+                  numberOfPlayers: option[0],
+                });
               }}
             >
               <Text>{option[0]}</Text>
@@ -41,8 +43,10 @@ function NumberOfPlayersSelector(props) {
             <Button
               isDisabled={option.length > 1 ? false : true}
               onPressIn={() => {
-                props.setNumberOfPlayers(option[1]);
-                props.setNumberOfPlayersSelected(true);
+                navigation.navigate("NameOfPlayersSelector", {
+                  gameName: route.params.gameName,
+                  numberOfPlayers: option[1],
+                });
               }}
             >
               <Text>{option[0] + 1}</Text>

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { VStack, Center, HStack, Button, Heading } from "native-base";
 
-function Games({ navigation }) {
+function GamesMenu({ navigation }) {
   return (
     <VStack alignItems="center" space={4}>
       <Heading textAlign="center" mb="10">
@@ -10,7 +10,15 @@ function Games({ navigation }) {
       </Heading>
       <HStack space={4}>
         <Button>Remi</Button>
-        <Button onPress={() => navigation.navigate("Presedintii")}>
+        <Button
+          onPress={() =>
+            navigation.navigate("NumberOfPlayersSelector", {
+              gameName: "Presedintii",
+              min: 3,
+              max: 7,
+            })
+          }
+        >
           Presedintii
         </Button>
       </HStack>
@@ -26,4 +34,4 @@ function Games({ navigation }) {
   );
 }
 
-export default Games;
+export default GamesMenu;

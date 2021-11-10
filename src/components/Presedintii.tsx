@@ -1,40 +1,35 @@
-import { Alert, Flex } from "native-base";
+import { Alert, Flex, Image } from "native-base";
 import React from "react";
-import { BackHandler } from "react-native";
+import { BackHandler, Pressable } from "react-native";
 import NumberOfPlayersSelector from "./NumberOfPlayersSelector";
 import NameOfPlayersSelector from "./NameOfPlayersSelector";
-import BasicGame from "./BasicGame";
 
-function Presedintii({ navigation }) {
-  const [gameOngoing, setGameOngoing] = React.useState(false);
-  const [numberOfPlayersSelected, setNumberOfPlayersSelected] =
-    React.useState(false);
+function Presedintii({ navigation, route }) {
+  const [roundOngoing, setroundOngoing] = React.useState(true);
+  const [gameOngoing, setgameOngoing] = React.useState(true);
 
-  const [nameOfPlayers, setNameOfPlayers] = React.useState({});
-  const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);
-  let page;
-  if (!numberOfPlayersSelected) {
-    page = (
-      <NumberOfPlayersSelector
-        gameName="Presedintii"
-        min="3"
-        max="7"
-        setNumberOfPlayers={setNumberOfPlayers}
-        setNumberOfPlayersSelected={setNumberOfPlayersSelected}
-      />
-    );
-  } else if (numberOfPlayersSelected && !gameOngoing) {
-    page = (
-      <NameOfPlayersSelector
-        numberOfPlayers={numberOfPlayers}
-        setGameOngoing={setGameOngoing}
-        // setNameOfPlayers={setNameOfPlayers}
-      />
-    );
-  } else {
-    page = <BasicGame />;
-  }
-  return <Flex alignItems="center">{page}</Flex>;
+  return (
+    <Flex alignItems="center">
+      {roundOngoing ? (
+        <Pressable
+          onPress={() => {
+            setroundOngoing(false);
+          }}
+        >
+          <Image
+            size="2xl"
+            resizeMode="center"
+            source={{
+              uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Cards-3-Club.svg/1200px-Cards-3-Club.svg.png",
+            }}
+            alt={"Alternate Text " + "2xl"}
+          />
+        </Pressable>
+      ) : (
+        <h1>alege castigatorul</h1>
+      )}
+    </Flex>
+  );
 }
 
 export default Presedintii;
