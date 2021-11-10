@@ -1,12 +1,10 @@
 import { Input, VStack, Button, Heading, FormControl } from "native-base";
 import React from "react";
 function NameOfPlayersSelector(props) {
-  const [players, setPlayers] = React.useState({});
-
   function handleChange(e) {
     const value = e.target.value;
-    setPlayers({
-      ...players,
+    props.setNameOfPlayers({
+      ...props.nameOfPlayers,
       [e.target.id]: value,
     });
   }
@@ -31,7 +29,9 @@ function NameOfPlayersSelector(props) {
       </FormControl>
       <Button
         onPress={() => {
-          console.log(players);
+          console.log(props.nameOfPlayers);
+          props.setGameOngoing(true);
+          // props.setNameOfPlayers();
         }}
       >
         Next

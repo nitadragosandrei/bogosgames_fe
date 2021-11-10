@@ -3,26 +3,38 @@ import React from "react";
 import { BackHandler } from "react-native";
 import NumberOfPlayersSelector from "./NumberOfPlayersSelector";
 import NameOfPlayersSelector from "./NameOfPlayersSelector";
+import BasicGame from "./BasicGame";
 
 function Presedintii({ navigation }) {
   const [gameOngoing, setGameOngoing] = React.useState(false);
-  const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);
+  const [numberOfPlayersSelected, setNumberOfPlayersSelected] =
+    React.useState(false);
 
-  return (
-    <Flex alignItems="center">
-      {!gameOngoing ? (
-        <NumberOfPlayersSelector
-          gameName="Presedintii"
-          min="3"
-          max="7"
-          setGameOngoing={setGameOngoing}
-          setNumberOfPlayers={setNumberOfPlayers}
-        />
-      ) : (
-        <NameOfPlayersSelector numberOfPlayers={numberOfPlayers} />
-      )}
-    </Flex>
-  );
+  const [nameOfPlayers, setNameOfPlayers] = React.useState({});
+  const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);
+  let page;
+  if (!numberOfPlayersSelected) {
+    page = (
+      <NumberOfPlayersSelector
+        gameName="Presedintii"
+        min="3"
+        max="7"
+        setNumberOfPlayers={setNumberOfPlayers}
+        setNumberOfPlayersSelected={setNumberOfPlayersSelected}
+      />
+    );
+  } else if (numberOfPlayersSelected && !gameOngoing) {
+    page = (
+      <NameOfPlayersSelector
+        numberOfPlayers={numberOfPlayers}
+        setGameOngoing={setGameOngoing}
+        // setNameOfPlayers={setNameOfPlayers}
+      />
+    );
+  } else {
+    page = <BasicGame />;
+  }
+  return <Flex alignItems="center">{page}</Flex>;
 }
 
 export default Presedintii;

@@ -33,7 +33,7 @@ function NumberOfPlayersSelector(props) {
             <Button
               onPressIn={() => {
                 props.setNumberOfPlayers(option[0]);
-                props.setGameOngoing(true);
+                props.setNumberOfPlayersSelected(true);
               }}
             >
               <Text>{option[0]}</Text>
@@ -42,7 +42,7 @@ function NumberOfPlayersSelector(props) {
               isDisabled={option.length > 1 ? false : true}
               onPressIn={() => {
                 props.setNumberOfPlayers(option[1]);
-                props.setGameOngoing(true);
+                props.setNumberOfPlayersSelected(true);
               }}
             >
               <Text>{option[0] + 1}</Text>
