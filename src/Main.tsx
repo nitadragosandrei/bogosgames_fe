@@ -7,6 +7,7 @@ import GamesMenu from "./components/GamesMenu";
 import Presedintii from "./components/Presedintii";
 import NumberOfPlayersSelector from "./components/NumberOfPlayersSelector";
 import NameOfPlayersSelector from "./components/NameOfPlayersSelector";
+import ScoreTable from "./components/ScoreTable";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function Main() {
             component={NameOfPlayersSelector}
           />
           <Stack.Screen name="Presedintii" component={Presedintii} />
+          <Stack.Screen name="ScoreTable" component={ScoreTable} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
