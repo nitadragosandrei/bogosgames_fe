@@ -17,6 +17,7 @@ import NameOfPlayersSelector from "./NameOfPlayersSelector";
 import ScoreTable from "./ScoreTable";
 
 function Presedintii({ navigation, route }) {
+  const [state, setState] = React.useState();
   const [roundOngoing, setroundOngoing] = React.useState(false);
   const [gameOngoing, setgameOngoing] = React.useState(true);
   const [points, setPoints] = React.useState(route.params.numberOfplayers);
@@ -30,7 +31,10 @@ function Presedintii({ navigation, route }) {
             <Button
               key={index}
               onPressIn={() => {
-                console.log(player["name"] + " are pula medie ");
+                player["score"] += points;
+                if (points === 0) setroundOngoing(false);
+                setPoints(points - 1);
+                console.log(route.params.players);
               }}
             >
               {player["name"]}
@@ -38,7 +42,12 @@ function Presedintii({ navigation, route }) {
           ))}
         </Button.Group>
       ) : (
-        <Pressable onPress={() => setroundOngoing(true)}>
+        <Pressable
+          onPress={() => {
+            setroundOngoing(true);
+            setPoints(route.params.numberOfplayers);
+          }}
+        >
           <Image
             size="2xl"
             resizeMode="center"
