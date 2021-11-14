@@ -15,6 +15,17 @@ function NameOfPlayersSelector({ navigation, route }) {
     });
   }
 
+  function handleChangeAndroid(e) {
+    const value = e.target.value;
+    setPlayers({
+      ...players,
+      [e.target.id]: {
+        name: value,
+        score: 0,
+      },
+    });
+  }
+
   return (
     <Flex alignItems="center">
       <VStack
@@ -37,6 +48,14 @@ function NameOfPlayersSelector({ navigation, route }) {
                 size="xs"
                 placeholder={"Insert player " + (index + 1) + " name"}
                 onChange={handleChange}
+                onChangeText={text => setPlayers({
+                  ...players,
+                  [`player${index}`]: {
+                    name: text,
+                    score: 0,
+                  },
+                })
+              }
               />
             );
           })}

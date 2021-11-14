@@ -39,6 +39,7 @@ function Presedintii({ navigation, route }) {
               nativeID={"button" + index}
               key={index}
               onPressIn={() => {
+                handlePress
                 player["score"] += points;
                 setPoints(points - 1);
                 if (points === 1) {
@@ -47,7 +48,8 @@ function Presedintii({ navigation, route }) {
                 }
               }}
               onPress={handlePress}
-              isDisabled={playerButton["button" + index] ? true : false }
+              onPressOut={handlePress}
+              isDisabled={playerButton[`button${index}`] ? true : false }
             >
               {player["name"]}
             </Button>
