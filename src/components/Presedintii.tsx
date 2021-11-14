@@ -19,16 +19,22 @@ import ScoreTable from "./ScoreTable";
 function Presedintii({ navigation, route }) {
   const [playerButton, setPlayerButton] = React.useState({});
   const [roundOngoing, setroundOngoing] = React.useState(false);
-  const [gameOngoing, setgameOngoing] = React.useState(true);
   const [points, setPoints] = React.useState(route.params.numberOfplayers);
   const [showModal, setShowModal] = React.useState(false);
-  
-   function handlePress(e) {
-     setPlayerButton({
-       ...playerButton,
-       [e.currentTarget.id]: true,
-     });
-   }
+
+  const handlePress = (index, points, playerPoints) => {
+    setPlayerButton({
+      ...playerButton,
+      [`button${index}`]: true,
+    });
+    playerPoints += points;
+    setPoints(points - 1);
+    if (points === 1) {
+      setroundOngoing(false);
+      setPlayerButton({});
+    }
+    return playerPoints;
+  };
 
   return (
     <Flex alignItems="center">
@@ -39,17 +45,9 @@ function Presedintii({ navigation, route }) {
               nativeID={"button" + index}
               key={index}
               onPressIn={() => {
-                handlePress
-                player["score"] += points;
-                setPoints(points - 1);
-                if (points === 1) {
-                  setroundOngoing(false);
-                  setPlayerButton({});
-                }
+                player["score"] = handlePress(index, points, player["score"]);
               }}
-              onPress={handlePress}
-              onPressOut={handlePress}
-              isDisabled={playerButton[`button${index}`] ? true : false }
+              isDisabled={playerButton[`button${index}`] ? true : false}
             >
               {player["name"]}
             </Button>

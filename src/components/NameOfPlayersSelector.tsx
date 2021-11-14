@@ -3,28 +3,16 @@ import React from "react";
 
 function NameOfPlayersSelector({ navigation, route }) {
   const [players, setPlayers] = React.useState({});
-
-  function handleChange(e) {
-    const value = e.target.value;
+  const handleChange = (index,text) =>{
     setPlayers({
       ...players,
-      [e.target.id]: {
-        name: value,
+      [`player${index}`]: {
+        name: text,
         score: 0,
-      },
-    });
-  }
-
-  function handleChangeAndroid(e) {
-    const value = e.target.value;
-    setPlayers({
-      ...players,
-      [e.target.id]: {
-        name: value,
-        score: 0,
-      },
-    });
-  }
+      }
+  });
+}
+  
 
   return (
     <Flex alignItems="center">
@@ -47,15 +35,8 @@ function NameOfPlayersSelector({ navigation, route }) {
                 nativeID={"player" + index}
                 size="xs"
                 placeholder={"Insert player " + (index + 1) + " name"}
-                onChange={handleChange}
-                onChangeText={text => setPlayers({
-                  ...players,
-                  [`player${index}`]: {
-                    name: text,
-                    score: 0,
-                  },
-                })
-              }
+                // onChange={handleChange}
+                onChangeText={(text)=>handleChange(index,text)}
               />
             );
           })}
